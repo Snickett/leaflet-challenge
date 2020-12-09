@@ -1,0 +1,3 @@
+# no checkpoints
+*.ipynb_checkpoints
+*config.js
