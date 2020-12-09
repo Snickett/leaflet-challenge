@@ -36,17 +36,17 @@ d3.json(Url, function(data) {
 
     //colors
     function getColor(d) {
-      return d > 5 ? '#FF7E19' :
-             d > 4 ? '#ffa705' :
-             d > 3 ? '#e8af05' :
-             d > 2 ? '#ffdb08' :
-             d > 1 ? '#e8dd05' :
-                     '#d2ff05';
+      return d > 10 ? '#310645' :
+             d > 7 ? '#381b45' :
+             d > 5 ? '#670d91' :
+             d > 3 ? '#9635c7' :
+             d > 1 ? '#8c12c4' :
+                     '#ca9bdf';
     }
 
     // markers
     function markerSize(earthquake_mag) {
-      return earthquake_mag * 5000;
+      return earthquake_mag * 10000;
     }
 
     var magMarkers = [];
@@ -56,8 +56,8 @@ d3.json(Url, function(data) {
         L.circle([+data.features[i].geometry.coordinates[1], +data.features[i].geometry.coordinates[0]], {
             //stroke: false,
             fillOpacity: 0.6,
-            color: getColor(+data.features[i].properties.mag),
-            fillColor: getColor(+data.features[i].properties.mag),
+            color: getColor(+data.features[i].geometry.coordinates[2]),
+            fillColor: getColor(+data.features[i].geometry.coordinates[2]),
             radius: markerSize(+data.features[i].properties.mag)
         }).bindPopup("<p>Rating: " + data.features[i].properties.sig  + "</p> <p> Depth(km): " +  data.features[i].geometry.coordinates[2] + "</p> <p> Magnitude: " + data.features[i].properties.mag + "</p>")
       ) 
@@ -73,8 +73,8 @@ d3.json(Url, function(data) {
     // Define a map object
     var myMap = L.map("map", {
       center: [40, -90],
-      zoom: 5,
-      layers: [darkmap, earthquakeMag]
+      zoom: 4,
+      layers: [streetmap, earthquakeMag]
     });
 
   L.control.layers(baseMaps, overlayMaps, {
